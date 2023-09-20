@@ -1,4 +1,6 @@
-this is an attempt to https://github.com/latitudegames/GPT-3-Encoder/ to NJS runtime
+This is an attempt to port https://github.com/latitudegames/GPT-3-Encoder/ to NJS runtime
+Turned out that changing some code because NJS doesn't support syntax.
+Using [rollup-replace](https://www.npmjs.com/package/@rollup/plugin-replace) plug-in to embed some assets at build time to produce a self containing single JS file. 
 
 to start it:
 
