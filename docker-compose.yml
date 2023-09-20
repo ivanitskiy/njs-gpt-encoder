@@ -1,0 +1,28 @@
+services:
+  node:
+    build:
+      context: .
+      dockerfile: dev/Dockerfile.node
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - node_dist:/app/dist
+  nginx:
+    build:
+      dockerfile: dev/Dockerfile.nginx
+    command: /nginx_wait_for_js nginx -c /etc/nginx/nginx.conf
+    depends_on:
+      - node
+    hostname: proxy.nginx.com
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./dev/nginx_wait_for_js:/nginx_wait_for_js
+      - node_dist:/usr/lib/nginx/njs_modules/
+    ports:
+      - 8009:8009
+    networks:
+      default:
+        aliases:
+          - proxy2.nginx.com
+volumes:
+  node_dist:

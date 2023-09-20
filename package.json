@@ -1,0 +1,76 @@
+{
+  "name": "njs-gpt-encoder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/gpt.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nginx/njs-gpt-encoder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "APACHE-2.0",
+  "bugs": {
+    "url": "https://github.com/nginx/njs-gpt-encoder/issues"
+  },
+  "homepage": "https://github.com/nginx/njs-gpt-encoder#readme",
+  "engines": {
+    "node": ">= 14.15"
+  },
+  "scripts": {
+    "build": "rollup -c --environment NODE_ENV:dev",
+    "clean": "rimraf dist/* lib/* node_modules/.cache/*",
+    "lint": "run-p lint:*",
+    "lint:eslint": "npx eslint .",
+    "start": "run-p watch start-nginx",
+    "start-nginx": "start-nginx --version 1.25.x --port 8090 --watch dist/ integration-tests/nginx.conf",
+    "test": "run-p test:*",
+    "test:unit": "mocha --config ./unit-tests/.mocharc.js",
+    "test:integration": "rollup -c && mocha --config ./integration-tests/.mocharc.js",
+    "watch": "rollup -c --watch --no-watch.clearScreen",
+    "prettier": "prettier --check --write src/"
+  },
+  "dependencies": {
+    "gpt-3-encoder": "^1.1.4",
+    "gpt-tokenizer": "^2.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/plugin-transform-modules-commonjs": "^7.21.5",
+    "@babel/preset-typescript": "^7.21.5",
+    "@babel/register": "^7.21.0",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^18.1.0",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^11.2.1",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@types/babel__core": "^7.20.0",
+    "@types/mocha": "^8.2.3",
+    "@types/rollup-plugin-add-git-msg": "^1.1.1",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "babel-plugin-empower-assert": "^2.0.0",
+    "babel-plugin-espower": "^3.0.1",
+    "babel-preset-njs": "^0.2.1",
+    "babel-register-ts": "^7.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "got": "^11.8.6",
+    "mocha": "^10.2.0",
+    "mocha-suite-hooks": "^0.1.0",
+    "nginx-testing": "^0.4.0",
+    "njs-types": "^0.8.0",
+    "npm-run-all": "^4.1.5",
+    "power-assert": "^1.6.1",
+    "prettier": "^2.8.8",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.79.1",
+    "rollup-plugin-add-git-msg": "^1.1.0",
+    "typescript": "~4.2.4"
+  }
+}
